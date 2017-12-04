@@ -1,0 +1,53 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <div class="form-group row">
+        <%= form.label :name, class: "col-sm-1 control-label" %>
+        <div class="col-md-4">
+          <%= form.text_field :name, id: :product_name, class: "form-control" %>
+        </div>
+   </div>
+  
+   <div class="form-group row">
+        <%= form.label :description, class: "col-sm-1 control-label" %>
+        <div class="col-md-4">
+          <%= form.text_field :description, id: :product_description, class: "form-control" %>
+        </div>
+   </div>
+  
+  <div class="form-group row">
+        <%= form.label :amount, class: "col-sm-1 control-label" %>
+        <div class="col-md-4">
+          <%= form.text_field :amount, id: :product_amount, class: "form-control" %>
+        </div>
+   </div>
+
+     <div class="form-group row">
+        <%= form.label :value, class: "col-sm-1 control-label" %>
+        <div class="col-md-4">
+          <%= form.text_field :value, id: :product_value, class: "form-control" %>
+        </div>
+   </div>
+
+
+
+  <div class="form-group row">
+    <%= form.label :category_id, class: "col-sm-1 control-label" %> 
+
+    <%= select("post", "category", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+    <%= select "get", "category", Category.all.collect {|x| [x.name, x.id]} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Criar Produto', class: 'btn btn-primary' %>
+  </div>
+<% end %>
